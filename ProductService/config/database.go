@@ -9,9 +9,9 @@ import (
 
 var (
 	USER   = "root"
-	PASS   = "123qwe!@#QWE"
+	PASS   = "pass"
 	HOST   = "localhost"
-	PORT   = "3306"
+	PORT   = "3030"
 	DBNAME = "cho_tot"
 )
 
