@@ -28,7 +28,7 @@ const secretKey = "3y6B8DbGdJfNjQmSqVsXu2x4z7C9EbHeKgNr"
 
 func main() {
 	flag.StringVar(&cfg.addr, "addr", ":4040", "HTTP network address")
-	flag.StringVar(&cfg.dsn, "dsn", "root:pass@tcp(localhost:3030)/chotot?parseTime=true", "MySQL data source name")
+	flag.StringVar(&cfg.dsn, "dsn", "root:pass@tcp(localhost:3030)/cho_tot?parseTime=true", "MySQL data source name")
 	flag.Parse()
 
 	// Create db instance

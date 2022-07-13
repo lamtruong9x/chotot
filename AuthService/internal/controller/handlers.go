@@ -37,7 +37,7 @@ type input struct {
 	Password string `json:"password" binding:"required"`
 }
 
-// TODO: generate token and send back to client
+// Done
 func (srv *Controller) Login(c *gin.Context) {
 	var input input
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -51,10 +51,10 @@ func (srv *Controller) Login(c *gin.Context) {
 	user, err := srv.Queries.GetUserByPhone(ctx, input.Phone)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "user is not exits"})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "user is not exits"})
 			return
 		}
-		srv.Log.Printf("Package controller-Login-GetUserByEmail: %v", err.Error())
+		srv.Log.Printf("Package controller-Login-GetUserByPhone: %v", err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error"})
 		return
 	}
@@ -71,7 +71,7 @@ func (srv *Controller) Login(c *gin.Context) {
 	c.JSON(http.StatusAccepted, gin.H{"Info": "Login successfully"})
 }
 
-// TODO: generate token and send back to client
+// Done
 func (srv *Controller) CreateNewUser(c *gin.Context) {
 	var input input
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -107,4 +107,5 @@ func (srv *Controller) CreateNewUser(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+	c.JSON(http.StatusCreated, "user created")
 }
