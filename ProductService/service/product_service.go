@@ -24,6 +24,7 @@ func (svc *service) Get() {
 }
 
 func (svc *service) GetByUserID(userID int, limit, offset int) ([]*entity.Product, error) {
+	offset *= limit
 	return svc.Repo.GetByUserID(userID, limit, offset)
 }
 
@@ -36,6 +37,6 @@ func (svc *service) Update(product *dto.ProductUpdate) (*entity.Product, error) 
 	return svc.Repo.Update(1, input)
 }
 
-func (svc *service) Delete() {
-
+func (svc *service) Delete(id int) error {
+	return svc.Repo.Delete(id)
 }

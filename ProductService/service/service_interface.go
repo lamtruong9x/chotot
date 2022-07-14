@@ -10,5 +10,5 @@ type Service interface {
 	//Get(any)
 	GetByUserID(userID int, limit, offset int) ([]*entity.Product, error)
 	Update(product *dto.ProductUpdate) (*entity.Product, error)
-	//Delete(any)
+	Delete(id int) error
 }
